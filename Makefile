@@ -1,10 +1,10 @@
-all: basins.pdf
+all: blob.pdf
 
-basins.pdf: *.tex Narrative/*.tex
-	pdflatex -interaction=nonstopmode basins.tex
-	bibtex basins
-	pdflatex -interaction=nonstopmode basins.tex
-	pdflatex -interaction=nonstopmode basins.tex
+blob.pdf: *.tex Narrative/*.tex
+	pdflatex -interaction=nonstopmode blob.tex
+	bibtex blob
+	pdflatex -interaction=nonstopmode blob.tex
+	pdflatex -interaction=nonstopmode blob.tex
 
 .PHONY:
 clean:
@@ -12,4 +12,4 @@ clean:
 
 .PHONY:
 cleanall: clean
-	rm -f basins.pdf
+	rm -f blob.pdf
