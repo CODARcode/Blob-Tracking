@@ -8,8 +8,4 @@ blob.pdf: *.tex Narrative/*.tex
 
 .PHONY:
 clean:
-	rm -f *aux *toc *bbl *log *out *blg
-
-.PHONY:
-cleanall: clean
-	rm -f blob.pdf
+	rm -f *aux *toc *bbl *log *out *blg blob.pdf
