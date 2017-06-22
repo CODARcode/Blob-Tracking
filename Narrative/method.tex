@@ -1,7 +1,7 @@
 \section{Our Method}
 
 The workflow of our method is illustrated in Figure~\ref{fig:pipeline}.  
-We first load the output scalar electrostatic potential field from ADIOS I/O, and then precondition the data with the robust principal component analysis (RPCA)~\cite{CandesLMW11}.  We then use the topology analysis techniques to extract blobs as critical points (local minimums/maximums) in individual slices of the data.  The blobs are further tracked over different slices and timesteps.  The dynamics of the blobs, such as birth/death/merge/split events are further visualized for fusion scientists to analyze the data.  
+We first load the output scalar electrostatic potential field from ADIOS I/O, and then precondition the data with the robust principal component analysis (RPCA)~\cite{CandesLMW11}.  We then use the topology analysis techniques to extract blobs as critical points (local minima/maxima) in individual slices of the data.  The blobs are further tracked over different slices and timesteps.  The dynamics of the blobs, such as birth/death/merge/split events are further visualized for fusion scientists to analyze the data.  
 
 \begin{figure}[!h]
   \centering
@@ -13,11 +13,11 @@ We first load the output scalar electrostatic potential field from ADIOS I/O, an
 
 \subsection{Data I/O}
 
-The scalar electrostatic potential field is stored in an unique unstructured mesh structure.  In general the data consist of multiple slices that uniformly partition the angular space domain in $[0, 2\pi)$, and each slice has share the same 2D triangular mesh structure.  The triangular mesh consists a list of vertex coordinates and their connections, and the electrostatic potential values are stored in a vector; each component of the vector records the scalar value on a vertex.  Data in different timesteps are stored in individual \texttt{.bp} files in the ADIOS format.  We are working with Dave Pugmire from ORNL to load the archival data from ADIOS I/O and convert the data into the VTK format.  
+The scalar electrostatic potential field is stored in a unique unstructured mesh structure.  In general the data consist of multiple slices that uniformly partition the angular space domain in $[0, 2\pi)$, and each slice shares the same 2D triangular mesh structure.  The triangular mesh consists a list of vertex coordinates and their connections, and the electrostatic potential values are stored in a vector; each component of the vector records the scalar value on a vertex.  Data in different timesteps are stored in individual \texttt{.bp} files in the ADIOS format.  We are working with Dave Pugmire from ORNL to load the archival data from ADIOS I/O and convert the data into the VTK format.  
 
 
 \subsection{Data Preconditioning}
-We are going to use RPCA to precondition the time series data, in order to distinguish the moving and stationary patterns as ``foregrounds'' and ``backgrounds''.  Formally, the input data matrix $M$ can be decomposed as 
+We are going to use RPCA to precondition the time series data, in order to distinguish the moving and stationary patterns as ``foregrounds'' and ``backgrounds.''  Formally, the input data matrix $M$ can be decomposed as 
 
 \begin{equation}
 M = L_0 + S_0, 
@@ -31,11 +31,11 @@ M = L_0 + S_0,
 \begin{figure}[!h]
   \centering
   \includegraphics[width=\linewidth]{Figs/blobs}
-  \caption{(a) Blob tracking over slices and time; (b) critical point tracking based on the combinatorial feature flow fields (image courtesy from Reininghaus et al.~\cite{ReininghausKWH12})}
+  \caption{(a) Blob tracking over slices and time; (b) critical point tracking based on the combinatorial feature flow fields (image courtesy Reininghaus et al.~\cite{ReininghausKWH12})}
   \label{fig:blob}
 \end{figure}
 
-As illustrated in Figure~\ref{fig:blob}(a), in our study, blob detection is defined as the extraction of critical points (local minimums and maximums) in 2D slices; blob tracking is defined as associating blobs across different planes and different timesteps.  The critical point tracking is based on the combinatorial feature flow fields method~\cite{ReininghausKWH12}, which is a generalization of feature flow field~\cite{TheiselS03} in the combinatorial sense.  We are also going to use merge tree theories to simplify the blob detection and tracking results~\cite{OesterlingHWMS17}.  3D visualizations will be provided to explore the spatiotemporal distributions of the tracked blobs.  
+As illustrated in Figure~\ref{fig:blob}(a), in our study, blob detection is defined as the extraction of critical points (local minima and maxima) in 2D slices; blob tracking is defined as associating blobs across different planes and different timesteps.  The critical point tracking is based on the combinatorial feature flow fields method~\cite{ReininghausKWH12}, which is a generalization of a feature flow field~\cite{TheiselS03} in the combinatorial sense.  We are also going to use merge tree theories to simplify the blob detection and tracking results~\cite{OesterlingHWMS17}.  3D visualizations will be provided to explore the spatiotemporal distributions of the tracked blobs.  
 
 
 
@@ -45,11 +45,11 @@ As illustrated in Figure~\ref{fig:blob}(a), in our study, blob detection is defi
 \begin{figure}[!h]
   \centering
   \includegraphics[width=\linewidth]{Figs/events}
-  \caption{Event visualization of blobs.}
+  \caption{Event visualization of blobs (image courtesy Scott Klasky, ORNL)}
   \label{fig:events}
 \end{figure}
 
-We are going to develop new visualizations for fusion scientists to understand the dynamics of the blobs.  We will define several different types of events, including birth, death, merge, and split to characterize the behaviors of blobs.  In our previous study of magnetic flux vortex tracking~\cite{GuoPPKG16, GuoPG17, PhillipsGPKG16, PhillipsPKG15}, we have already proposed a graph-based representation of such events.  We are going to further generalize the previous methods to visualize the events in the XGC data.  
+We are going to develop new visualizations for fusion scientists to understand the dynamics of the blobs.  We will define several different types of events, including birth, death, merge, and split to characterize the behaviors of blobs.  In our previous study of magnetic flux vortex tracking~\cite{GuoPPKG16, GuoPG17, PhillipsGPKG16, PhillipsPKG15}, we have already developed a graph-based representation of such events.  We are going to further generalize the previous methods to visualize the events in the XGC data.  
 
 % 
 
