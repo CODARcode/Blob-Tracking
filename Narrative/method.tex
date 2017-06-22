@@ -35,13 +35,12 @@ M = L_0 + S_0,
   \label{fig:blob}
 \end{figure}
 
+As illustrated in Figure~\ref{fig:blob}(a), in our study, blob detection is defined as the extraction of critical points (local minimums and maximums) in 2D slices; blob tracking is defined as associating blobs across different planes and different timesteps.  The critical point tracking is based on the combinatorial feature flow fields method~\cite{ReininghausKWH12}, which is a generalization of feature flow field~\cite{TheiselS03} in the combinatorial sense.  We are also going to use merge tree theories to simplify the blob detection and tracking results~\cite{OesterlingHWMS17}.  3D visualizations will be provided to explore the spatiotemporal distributions of the tracked blobs.  
 
-As illustrated in Figure~\ref{fig:blob}(a), in our study, blob detection is defined as the extraction of critical points (local minimums and maximums) in 2D slices; blob tracking is defined as associating blobs across different planes and different timesteps.  The critical point tracking is based on the combinatorial feature flow fields method~\cite{ReininghausKWH12}, which is a generalization of feature flow field~\cite{TheiselS03} in the combinatorial sense.  
 
 
 
 \subsection{Event visualization}
-
 
 \begin{figure}[!h]
   \centering
@@ -50,14 +49,12 @@ As illustrated in Figure~\ref{fig:blob}(a), in our study, blob detection is defi
   \label{fig:events}
 \end{figure}
 
+We are going to develop new visualizations for fusion scientists to understand the dynamics of the blobs.  We will define several different types of events, including birth, death, merge, and split to characterize the behaviors of blobs.  In our previous study of magnetic flux vortex tracking~\cite{GuoPPKG16, GuoPG17, PhillipsGPKG16, PhillipsPKG15}, we have already proposed a graph-based representation of such events.  We are going to further generalize the previous methods to visualize the events in the XGC data.  
 
+% 
 
+% Critical point tracking~\cite{ReininghausKWH12}.
 
+% 
 
-Magnetic flux vortex tracking~\cite{GuoPPKG16, GuoPG17, PhillipsGPKG16, PhillipsPKG15}.
-
-Critical point tracking~\cite{ReininghausKWH12}.
-
-High-dimensional merge tree~\cite{OesterlingHWMS17}. 
-
-Feature flow fields~\cite{TheiselS03}. 
+% Feature flow fields~\cite{TheiselS03}. 
