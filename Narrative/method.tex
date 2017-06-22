@@ -1,20 +1,23 @@
 \section{Our Method}
 
 The workflow of our method is illustrated in Figure~\ref{fig:pipeline}.  
-We first load the output scalar electrostatic potential field from ADIOS I/O, and then precondition the data with the robust principal component analysis (RPCA)~\cite{CandesLMW11}.  We then use the topology analysis techniques to extract blobs as critical points (local minimums/maximums and saddles) in individual slices of the data.  The blobs are further tracked over different slices and timesteps.  The dynamics of the blobs, such as birth/death/merge/split events are further visualized for fusion scientists to analyze the data.  
+We first load the output scalar electrostatic potential field from ADIOS I/O, and then precondition the data with the robust principal component analysis (RPCA)~\cite{CandesLMW11}.  We then use the topology analysis techniques to extract blobs as critical points (local minimums/maximums) in individual slices of the data.  The blobs are further tracked over different slices and timesteps.  The dynamics of the blobs, such as birth/death/merge/split events are further visualized for fusion scientists to analyze the data.  
 
-
-\begin{figure}
+\begin{figure}[!h]
   \centering
   \includegraphics[width=\linewidth]{Figs/pipeline}
   \caption{The pipeline of our method.}
   \label{fig:pipeline}
 \end{figure}
 
-{\bf Data I/O}\quad The scalar electrostatic potential field is stored in an unique unstructured mesh structure.  In general the data consist of multiple slices that uniformly partition the angular space domain in $[0, 2\pi)$, and each slice has share the same 2D triangular mesh structure.  The triangular mesh consists a list of vertex coordinates and their connections, and the electrostatic potential values are stored in a vector; each component of the vector records the scalar value on a vertex.  Data in different timesteps are stored in individual \texttt{.bp} files in the ADIOS format.  We are working with Dave Pugmire from ORNL to load the archival data from ADIOS I/O and convert the data into the VTK format.  
+
+\subsection{Data I/O}
+
+The scalar electrostatic potential field is stored in an unique unstructured mesh structure.  In general the data consist of multiple slices that uniformly partition the angular space domain in $[0, 2\pi)$, and each slice has share the same 2D triangular mesh structure.  The triangular mesh consists a list of vertex coordinates and their connections, and the electrostatic potential values are stored in a vector; each component of the vector records the scalar value on a vertex.  Data in different timesteps are stored in individual \texttt{.bp} files in the ADIOS format.  We are working with Dave Pugmire from ORNL to load the archival data from ADIOS I/O and convert the data into the VTK format.  
 
 
-{\bf Data Preconditioning}\quad We are going to use RPCA to precondition the time series data, in order to distinguish the moving and stationary patterns as ``foregrounds'' and ``backgrounds''.  Formally, the input data matrix $M$ can be decomposed as 
+\subsection{Data Preconditioning}
+We are going to use RPCA to precondition the time series data, in order to distinguish the moving and stationary patterns as ``foregrounds'' and ``backgrounds''.  Formally, the input data matrix $M$ can be decomposed as 
 
 \begin{equation}
 M = L_0 + S_0, 
@@ -23,11 +26,21 @@ M = L_0 + S_0,
 \noindent where $L_0$ has low rank and $S_0$ is a sparse perturbation matrix.  RPCA has been used to identify activities in video surveillance data, so that $L_0$ and $S_0$ correspond to the stationary background and moving features, respectively.  By preconditioning the input time series, we can detect the moving features for further blob tracking.  We are working with George Ostrouchov and Jong Choi from ORNL to generalize this technique to precondition the triangular mesh data.  
 
 
-{\bf Topology Analysis and Simplification}\quad
+\subsection{Topology-based blob detection and tracking}
 
-{\bf Feature Tracking}\quad
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=\linewidth]{Figs/blobs}
+  \caption{(a) Blob tracking over slices and time; (b) critical point tracking based on the combinatorial feature flow fields (image courtesy from Reininghaus et al.~\cite{ReininghausKWH12})}
+  \label{fig:blob}
+\end{figure}
 
-{\bf Event visualization}\quad
+
+As illustrated in Figure~\ref{fig:blob}(a), blob detection is defined as the extraction of critical points (local minimums and maximums) in 2D slices; blob tracking is defined as associating blobs across different planes and different timesteps.  
+
+
+
+\subsection{Event visualization}
 
 
 
