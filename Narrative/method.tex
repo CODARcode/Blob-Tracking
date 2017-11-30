@@ -1,4 +1,5 @@
 \section{Our Method}
+\label{sec:method}
 
 The workflow of our method is illustrated in Figure~\ref{fig:pipeline}.  
 We first load the output scalar electrostatic potential field from ADIOS I/O, and then precondition the data with the robust principal component analysis (RPCA)~\cite{CandesLMW11}.  We then use the topology analysis techniques to extract blobs as critical points (local minima/maxima) in individual slices of the data.  The blobs are further tracked over different slices and timesteps.  The dynamics of the blobs, such as birth/death/merge/split events are further visualized for fusion scientists to analyze the data.  
