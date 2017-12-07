@@ -46,6 +46,8 @@ Story line or tracking graph visualization~\cite{TanahashiM12, GuoPPKG16}.
 
 \subsection{In Situ Visualization}
 
+A comprehensive review on in situ visualization is available in~\cite{BauerAACGKMLVWB16}.  
+
 \remark{As summarized by a recent comprehensive review~\cite{BauerAACGKMLVWB16}, in situ visualization is motivated by multiple factors---the disparity between scientific computing and I/O rate, the increased temporal resolution needed for accurate data analysis, and the utilization of all computing resources.  Our in situ workflow benefits the analysis of vortex dynamics in all three aspects.  We categorize the related work on in situ visualization into applications, algorithms, and infrastructures.}
 
 \remark{In situ visualization techniques have been used in various scientific applications.  For example, Yu et al.~\cite{YuWGCM10} visualized volume and particle data in combustion simulations.  Topologies in combustion data can be extracted by using segmented merge trees in situ~\cite{LandgePGBKCB14}.  Woodring et al.~\cite{WoodringPSPAH16} developed an in situ workflow to analyze eddies in the study of ocean-climate models.  Fabian~\cite{Fabian12} used in situ processing to detect fragments in explosion simulations.  All these studies aim to achieve higher temporal resolution of the data in order to extract time-critical features.  In our application, an additional challenge is that the TDGL simulation runs much faster than the vortex analysis algorithms.  We must redesign the workflow and accelerate the algorithms in our in situ processing.}
