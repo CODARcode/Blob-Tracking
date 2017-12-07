@@ -5,7 +5,7 @@ Our method is mainly related to feature tracking techniques and scalar field top
 
 
 
-\subsection{Scalar Field Topology}
+\subsection{Topology-based Visualization}
 
 Reeb graph~\cite{Reeb1946}.  
 
@@ -18,7 +18,6 @@ Vector and tensor field simplification~\cite{TricocheSH00, TricocheSH01a, Tricoc
 Topology-based transfer function design~\cite{FujishiroAT99}, topology attributes~\cite{TakeshimaTFN04}, symmetry~\cite{ThomasN11}, topology-controlled volume rendering~\cite{WeberDCPH07}, color design~\cite{ZhouT09}, local transfer function~\cite{GuoY13}.  
 
 High-dimensional merge tree~\cite{OesterlingHWMS17}. 
-
 
 
 
@@ -46,11 +45,7 @@ Story line or tracking graph visualization~\cite{TanahashiM12, GuoPPKG16}.
 
 \subsection{In Situ Visualization}
 
-A comprehensive review on in situ visualization is available in~\cite{BauerAACGKMLVWB16}.  
-
-\remark{As summarized by a recent comprehensive review~\cite{BauerAACGKMLVWB16}, in situ visualization is motivated by multiple factors---the disparity between scientific computing and I/O rate, the increased temporal resolution needed for accurate data analysis, and the utilization of all computing resources.  Our in situ workflow benefits the analysis of vortex dynamics in all three aspects.  We categorize the related work on in situ visualization into applications, algorithms, and infrastructures.}
-
-\remark{In situ visualization techniques have been used in various scientific applications.  For example, Yu et al.~\cite{YuWGCM10} visualized volume and particle data in combustion simulations.  Topologies in combustion data can be extracted by using segmented merge trees in situ~\cite{LandgePGBKCB14}.  Woodring et al.~\cite{WoodringPSPAH16} developed an in situ workflow to analyze eddies in the study of ocean-climate models.  Fabian~\cite{Fabian12} used in situ processing to detect fragments in explosion simulations.  All these studies aim to achieve higher temporal resolution of the data in order to extract time-critical features.  In our application, an additional challenge is that the TDGL simulation runs much faster than the vortex analysis algorithms.  We must redesign the workflow and accelerate the algorithms in our in situ processing.}
+A comprehensive review on in situ visualization is available in~\cite{BauerAACGKMLVWB16}.  In situ visualization is mainly driven by three reasons.  First, there is a disparity between scientific simulations and limited I/O bandwidth, which prevents comprehensive data storage.  Second, domain scientists need to understand simulation outputs in higher temporal resolutions than before.  Our in situ topology-based visualization workflow benefits the analysis of blobs in both aspects.  In the following, we categorize the related work into algorithms, infrastructures, and applications.  
 
 \remark{Various algorithms are used for efficient in situ visualization.  For example, the performance of in situ volume rendering depends on image compositing algorithms, such as binary swap~\cite{MaPHK1994} and 2-3 swap~\cite{YuWM08}.  Explorable images~\cite{TikhonovaCM2010}, which can generate new volume rendering results with a small number of rendered images, can be used for in situ visualization.  Similarly, pathtubes can be visualized in situ with explorable images~\cite{YeMM13}.  Ahrens et al. presented an image-based in situ visualization framework for interactive exploration~\cite{AhrensJOPRP14}.  In addition to rendering technologies, algorithms are proposed to select optimal numbers of time steps for in situ visualization~\cite{MalakarVMKHLP15}.  GoldRush~\cite{ZhengYHWESAK13} uses idle resources for in situ processing.  
 Bennett et al.~\cite{BennettABGGJKKPPPTYZC12} explored a method to offload the computations of merge trees into secondary resources.  In our study, we decouple the heavyweight vortex analysis in an independent process for parallel and asynchronous processing, in order to reduce the slowdown of the simulation.}
@@ -58,6 +53,9 @@ Bennett et al.~\cite{BennettABGGJKKPPPTYZC12} explored a method to offload the c
 \remark{In situ infrastructures are bridges between the simulation code and visualization methods.  Typical examples include ParaView Catalyst~\cite{FabianMTBMGRJ11} and VisIt Libsim~\cite{WhitlockFM11}, which can help scientists and visualization practitioners couple the simulation with production visualization tools.
 % Damaris/Viz~\cite{DorierSPAS13}.  
 Because visualization algorithms are usually I/O intensive, various I/O solutions are proposed for in situ processing, such as ADIOS~\cite{LofsteadZKS09}, FlexIO~\cite{ZhengZESWDNCAKPY13}, and DataSpaces~\cite{DocanPK12}.  Instead of using existing frameworks and I/O solutions, the characteristics of both our simulation and analysis algorithms required us to customize our in situ workflow and store the output data in high-performance databases.}
+
+\remark{In situ visualization techniques have been used in various scientific applications.  For example, Yu et al.~\cite{YuWGCM10} visualized volume and particle data in combustion simulations.  Topologies in combustion data can be extracted by using segmented merge trees in situ~\cite{LandgePGBKCB14}.  Woodring et al.~\cite{WoodringPSPAH16} developed an in situ workflow to analyze eddies in the study of ocean-climate models.  Fabian~\cite{Fabian12} used in situ processing to detect fragments in explosion simulations.  All these studies aim to achieve higher temporal resolution of the data in order to extract time-critical features.  In our application, an additional challenge is that the TDGL simulation runs much faster than the vortex analysis algorithms.  We must redesign the workflow and accelerate the algorithms in our in situ processing.}
+
 
 % use direct integration for in situ primitive detection and implement the custom in transit workflow.  
 % GLEAN~\cite{VishwanathHMP11}.  .  PreDatA~\cite{ZhengADLLKPPSW10}.  .  SCIRun~\cite{ParkerJ95}.  Workflows, decaf, etc.  \remark{TBA: explainations}.
