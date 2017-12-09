@@ -1,23 +1,30 @@
 \section{Related Work}
 \label{sec:related}
 
-Our method is mainly related to feature tracking techniques and scalar field topology theories.  A review on topology-based visualization~\cite{HeineLHIFSHG16}. 
-
+Our method is mainly related to feature tracking techniques and scalar field topology theories.  
 
 
 \subsection{Topology-based Visualization}
 
-Reeb graph~\cite{Reeb1946}.  
+A comprehensive review on topology-based visualization, which covers scalar, vector, and tensor fields topology is available in~\cite{HeineLHIFSHG16}.  We mainly review techniques related to the level-set based scalar field visualization.  
 
-The topology toolkit~\cite{TiernyFLGM18}.  
+Formally, the \emph{level set} a real-valued scalar function $f: \Omega\mapsto\mathcal{R}$ is defined as the preimage $f^{-1}(c) = \{x\in\Omega | f(x) = c \}$, which consists one or multiple \emph{contours}.  The topology of the level set may change if we change isovalue $c$, and the topology change can be represented with a \emph{contour tree}~\cite{} if the domain $\Omega$ is simply connected.  In a more general sense, the topology can be represented as Reeb graphs~\cite{Reeb46} if the domain is non-simply connected.  In contour trees or Reeb graphs, each node corresponds to a \emph{critical point}, that is, a local minimum, a local maximum, or a saddle; each node also represents the birth, death, joining, or splitting of one or more contours.  Edges in contour trees or Reeb graphs, so called \emph{arcs}, represent the components between critical points. 
 
-Contour tree simplification~\cite{CarrSP04, KreveldOBPS97}, branch decomposition~\cite{Pascucci2004}.
+The computation of scalar field topology is well established.  Oesterling et al.~\cite{OesterlingHWMS17} proposed an algorithm to compute contour trees in any dimensions.  Distributed and parallel implementations are also developed to handle large datasets~\cite{MorozovW13}.  More recently, Tierny et al. developed the topology toolkit (TTK)~\cite{TiernyFLGM18}, a generic implementation of many important topology-based analysis algorithms.  
 
-Vector and tensor field simplification~\cite{TricocheSH00, TricocheSH01a, TricocheSHC01}.  
+Topology simplification is the key to apply scalar field topology to real-world data analyses, because a large number of critical points could be created by noises.  One of the most efficient topology simplification techniques based on persistence~\cite{EdelsbrunnerLZ02}, which characterizes the ``duration'' of the feature and is defined as the difference of the upper and lower bound of a arc.  Contour trees and Reeb graphs can be simplified by removing least persistent arcs or critical point pairs.  
+In addition to persistence, Carr et al.~\cite{CarrSP04} used local geometric measurements, such of areas and volumes, to simplify contour trees.  Pascucci et al.~\cite{Pascucci2004} proposed the branch decomposition, which represents contour trees in a multiresolution manner.  In branch decompositions, contour trees can be simplified by truncating branches with least persistences.  
 
-Topology-based transfer function design~\cite{FujishiroAT99}, topology attributes~\cite{TakeshimaTFN04}, symmetry~\cite{ThomasN11}, topology-controlled volume rendering~\cite{WeberDCPH07}, color design~\cite{ZhouT09}, local transfer function~\cite{GuoY13}.  
+Scalar field topology has been used for many visualization techniques, especially transfer function designs for volume rendering.  For example, Fujishiro et al.~\cite{FujishiroAT99} proposed an automatic topology-based transfer function design, which uses Reeb graphs to find appropriate global color and opacity mappings for the input data.  Weber et al.~\cite{WeberDCPH07} use different local transfer function for different arcs in the contour trees.  Such local transfer functions can be interactively edited on volume rendered images in a what-you-see-is-what-you-get (WYSWIG) style~\cite{GuoY13}.  An automatic color design for local transfer functions was also studied~\cite{ZhouT09}.  
 
-High-dimensional merge tree~\cite{OesterlingHWMS17}. 
+% topology-controlled volume rendering~\cite{}, local transfer function~\cite{}. 
+% symmetry~\cite{ThomasN11},  
+
+Applications: combustion, cloud systems~\cite{DoraiswamyNN13}, urban, 
+
+
+
+In our study, blobs are defined as arcs that correspond to both maxima and minima in the dpot field.  
 
 
 
@@ -54,10 +61,12 @@ Bennett et al.~\cite{BennettABGGJKKPPPTYZC12} explored a method to offload the c
 % Damaris/Viz~\cite{DorierSPAS13}.  
 Because visualization algorithms are usually I/O intensive, various I/O solutions are proposed for in situ processing, such as ADIOS~\cite{LofsteadZKS09}, FlexIO~\cite{ZhengZESWDNCAKPY13}, and DataSpaces~\cite{DocanPK12}.  Instead of using existing frameworks and I/O solutions, the characteristics of both our simulation and analysis algorithms required us to customize our in situ workflow and store the output data in high-performance databases.}
 
-\remark{In situ visualization techniques have been used in various scientific applications.  For example, Yu et al.~\cite{YuWGCM10} visualized volume and particle data in combustion simulations.  Topologies in combustion data can be extracted by using segmented merge trees in situ~\cite{LandgePGBKCB14}.  Woodring et al.~\cite{WoodringPSPAH16} developed an in situ workflow to analyze eddies in the study of ocean-climate models.  Fabian~\cite{Fabian12} used in situ processing to detect fragments in explosion simulations.  All these studies aim to achieve higher temporal resolution of the data in order to extract time-critical features.  In our application, an additional challenge is that the TDGL simulation runs much faster than the vortex analysis algorithms.  We must redesign the workflow and accelerate the algorithms in our in situ processing.}
+Various scientific applications including combustion~\cite{YuWGCM10}, climate~\cite{WoodringPSPAH16} to superconductivities~\cite{GuoPG17}, benefit from in situ visualization techniques.  
+\remark{For example, Yu et al.~\cite{YuWGCM10} visualized volume and particle data in combustion simulations.  Topologies in combustion data can be extracted by using segmented merge trees in situ~\cite{LandgePGBKCB14}.  Woodring et al.~\cite{WoodringPSPAH16} developed an in situ workflow to analyze eddies in the study of ocean-climate models.  Fabian~\cite{Fabian12} used in situ processing to detect fragments in explosion simulations.  All these studies aim to achieve higher temporal resolution of the data in order to extract time-critical features.} 
+% In our application, an additional challenge is that the TDGL simulation runs much faster than the vortex analysis algorithms.  We must redesign the workflow and accelerate the algorithms in our in situ processing.}
 
 
 % use direct integration for in situ primitive detection and implement the custom in transit workflow.  
 % GLEAN~\cite{VishwanathHMP11}.  .  PreDatA~\cite{ZhengADLLKPPSW10}.  .  SCIRun~\cite{ParkerJ95}.  Workflows, decaf, etc.  \remark{TBA: explainations}.
 
-\remark{Recently, a group of visualization researchers started the ``in situ terminology project''~\cite{terminology}, in order to uniformly classify the description of in situ methods.  According to their terminology, the integration type and data access are direct, because the primitive detection code is directly plugged into the TDGL simulations and shares the same address space.  The proximity is twofold: the primitive detector shares the same GPU cores as the simulation, and the vortex analyzer uses CPUs on or off the node.  The synchronization is hybrid: the primitive detector runs synchronously with the simulation, and the vortex analyzer runs asynchronously with the simulation.  The operation controls are not applicable in our workflow, and the output type is explorable.}
+% \remark{Recently, a group of visualization researchers started the ``in situ terminology project''~\cite{terminology}, in order to uniformly classify the description of in situ methods.  According to their terminology, the integration type and data access are direct, because the primitive detection code is directly plugged into the TDGL simulations and shares the same address space.  The proximity is twofold: the primitive detector shares the same GPU cores as the simulation, and the vortex analyzer uses CPUs on or off the node.  The synchronization is hybrid: the primitive detector runs synchronously with the simulation, and the vortex analyzer runs asynchronously with the simulation.  The operation controls are not applicable in our workflow, and the output type is explorable.}
