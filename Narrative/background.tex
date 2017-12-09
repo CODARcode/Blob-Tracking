@@ -1,7 +1,7 @@
-\section{Related Work}
+\section{Background}
 \label{sec:related}
 
-Our method is mainly related to feature tracking techniques and scalar field topology theories.  
+In this section, we review literature related to topology-based visualization, feature tracking, and in situ visualization.  
 
 
 \subsection{Topology-based Visualization}
@@ -17,15 +17,9 @@ In addition to persistence, Carr et al.~\cite{CarrSP04} used local geometric mea
 
 Scalar field topology has been used for many visualization techniques, especially transfer function designs for volume rendering.  For example, Fujishiro et al.~\cite{FujishiroAT99} proposed an automatic topology-based transfer function design, which uses Reeb graphs to find appropriate global color and opacity mappings for the input data.  Weber et al.~\cite{WeberDCPH07} use different local transfer function for different arcs in the contour trees.  Such local transfer functions can be interactively edited on volume rendered images in a what-you-see-is-what-you-get (WYSWIG) style~\cite{GuoY13}.  An automatic color design for local transfer functions was also studied~\cite{ZhouT09}.  
 
-% topology-controlled volume rendering~\cite{}, local transfer function~\cite{}. 
-% symmetry~\cite{ThomasN11},  
+Scalar field topology is also applied in many scientific domains.  For example, topology-based segmentation is used to extract a wide range of features in combustion simulations~\cite{LandgePGBKCB14}.  Cloud systems can be extracted and visualized with topology information in weather simulations~\cite{DoraiswamyNN13}.
 
-Applications: combustion, cloud systems~\cite{DoraiswamyNN13}, urban, 
-
-
-
-In our study, blobs are defined as arcs that correspond to both maxima and minima in the dpot field.  
-
+In our study, blobs are defined as arcs that correspond to both maxima and minima in the input data.  Reeb trees instead of contour trees are necessary, because the torus-shaped data domain is non-simply connected.  We also use both persistent and geometric measurements to simplify the topology, in order to identify salient blob features.  
 
 
 \subsection{Feature Tracking}
