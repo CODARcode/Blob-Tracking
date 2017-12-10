@@ -17,30 +17,26 @@ In addition to persistence, Carr et al.~\cite{CarrSP04} used local geometric mea
 
 Scalar field topology has been used for many visualization techniques, especially transfer function designs for volume rendering.  For example, Fujishiro et al.~\cite{FujishiroAT99} proposed an automatic topology-based transfer function design, which uses Reeb graphs to find appropriate global color and opacity mappings for the input data.  Weber et al.~\cite{WeberDCPH07} use different local transfer function for different arcs in the contour trees.  Such local transfer functions can be interactively edited on volume rendered images in a what-you-see-is-what-you-get (WYSWIG) style~\cite{GuoY13}.  An automatic color design for local transfer functions was also studied~\cite{ZhouT09}.  
 
-Scalar field topology is also applied in many scientific domains.  For example, topology-based segmentation is used to extract a wide range of features in combustion simulations~\cite{LandgePGBKCB14}.  Cloud systems can be extracted and visualized with topology information in weather simulations~\cite{DoraiswamyNN13}.
+Scalar field topology is also applied in many scientific domains.  For example, topology-based segmentation is used to extract a wide range of features in combustion simulations~\cite{LandgePGBKCB14}.  Cloud systems can be extracted and visualized with topology information in weather simulations~\cite{DoraiswamyNN13}.  Eddies in oceanic simulations are also tracked in situ, in order to capture comprehensive dynamics of the features~\cite{WoodringPSPAH16}.  Guo et al.~\cite{GuoPG17} proposed a workflow to track magnetic flux vortices in superconductivity simulations.  
 
 In our study, blobs are defined as arcs that correspond to both maxima and minima in the input data.  Reeb trees instead of contour trees are necessary, because the torus-shaped data domain is non-simply connected.  We also use both persistent and geometric measurements to simplify the topology, in order to identify salient blob features.  
 
 
 \subsection{Feature Tracking}
 
-Feature tracking is a well-studied problem in scientific visualization~\cite{PostVHLD2003}.  Scalar features~\cite{SilverW98}.  Robustness~\cite{SkrabaW14}.  
+Feature tracking is a well-studied problem in scientific visualization~\cite{PostVHLD2003}.  In this study, we define feature extraction to mean identifying features in single timesteps and feature tracking to mean associating these features over adjacent timesteps in the input data.  
 
-Existing blob tracking in fusion plasma~\cite{WuWSCCSCK16}.  Experimental data~\cite{DavisKMRSZ14}.  
+Feature tracking techniques highly depend on how feature are defined.  In most applications, features are defined as subregions (e.g. subvolumes) of the data; region overlaps are used as priori for tracking.  In flow visualization, Vortex core lines, which have multiple different definitions, can be extracted and tracked with parallel vectors~\cite{PeikertR99} and feature flow fields~\cite{TheiselS03, WeinkaufTGP11}, respectively.  Critical point tracking in vector fields and tensor fields are also studied~\cite{GarthTS04, TricocheSH01, TricocheWSH02, ReininghausKWH12}.  In superconductivity simulations, magnetic flux vortices---topological singularities in the input complex-valued order parameter field---can be tracked by generalizing the mathematical definition to 4D space and time~\cite{GuoPPKG16, GuoPG17, PhillipsGPKG16, PhillipsPKG15}.  
 
-Tracking vector field critical points~\cite{GarthTS04}.  Vortex core tracking~\cite{TheiselSWHS05}.  Vortex core tracking in scale space~\cite{BauerP02}.  
+Blob tracking has been studied for both experimental and simulation data in fusion sciences.  \remark{TBA}.  Existing blob tracking in fusion plasma~\cite{WuWSCCSCK16}.  Experimental data~\cite{DavisKMRSZ14}.  
 
-Tensor feature tracking~\cite{TricocheSH01, TricocheWSH02}.  
+In addition to feature tracking algorithms, the visualization of topological changes of features is also a challenging problem.  The changing dynamics of features can be visualized with story lines~\cite{TanahashiM12} in previous studies~\cite{GuoPPKG16}, and we are going to invent new techniques to visualize the dynamics in fusion simulation data.  
 
-Magnetic flux vortex tracking~\cite{GuoPPKG16, GuoPG17, PhillipsGPKG16, PhillipsPKG15}.
-
-Feature flow fields~\cite{TheiselS03, WeinkaufTGP11}. 
-
-Critical point tracking~\cite{ReininghausKWH12}.
-
-Eddy tracking~\cite{WoodringPSPAH16}.  
-
-Story line or tracking graph visualization~\cite{TanahashiM12, GuoPPKG16}.  
+% Robustness~\cite{SkrabaW14}.  
+% Tracking vector field critical points~\cite{}.  Vortex core tracking~\cite{TheiselSWHS05}.  Vortex core tracking in scale space~\cite{BauerP02}.  
+% Tensor feature tracking~\cite{}.  
+% Magnetic flux vortex tracking.
+% Critical point tracking~\cite{}.
 
 
 
