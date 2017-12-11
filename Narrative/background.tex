@@ -8,15 +8,28 @@ In this section, we review literature related to topology-based visualization, f
 
 A comprehensive review on in situ visualization is available in~\cite{BauerAACGKMLVWB16}.  In situ visualization is mainly driven by three reasons.  First, there is a disparity between scientific simulations and limited I/O bandwidth, which prevents comprehensive data storage.  Second, domain scientists need to understand simulation outputs in higher temporal resolutions than before.  Our in situ topology-based visualization workflow benefits the analysis of blobs in both aspects.  In the following, we categorize the related work into algorithms, infrastructures, and applications.  
 
-\remark{Various algorithms are used for efficient in situ visualization.  Explorable images~\cite{TikhonovaCM2010}, which can generate new volume rendering results with a small number of rendered images, can be used for in situ visualization.  Similarly, pathtubes can be visualized in situ with explorable images~\cite{YeMM13}.  Ahrens et al. presented an image-based in situ visualization framework for interactive exploration~\cite{AhrensJOPRP14}.  In addition to rendering technologies, algorithms are proposed to select optimal numbers of time steps for in situ visualization~\cite{MalakarVMKHLP15}.  GoldRush~\cite{ZhengYHWESAK13} uses idle resources for in situ processing.  
-Bennett et al.~\cite{BennettABGGJKKPPPTYZC12} explored a method to offload the computations of merge trees into secondary resources.  In our study, we decouple the heavyweight vortex analysis in an independent process for parallel and asynchronous processing, in order to reduce the slowdown of the simulation.}
+{\bf In situ visualization algorithms} filter online input data and generate posthoc visualization results.  For example, Explorable images~\cite{TikhonovaCM2010}, which can generate new volume rendering results with a small number of rendered images, can be used for in situ visualization.  Similarly, pathtubes can be visualized in situ with explorable images~\cite{YeMM13}.  Ahrens et al. presented an image-based in situ visualization framework for interactive exploration~\cite{AhrensJOPRP14}.  Algorithms are also proposed to choose representative timesteps for in situ visualization~\cite{MalakarVMKHLP15}.  
 
-\remark{In situ infrastructures are bridges between the simulation code and visualization methods.  Typical examples include ParaView Catalyst~\cite{FabianMTBMGRJ11} and VisIt Libsim~\cite{WhitlockFM11}, which can help scientists and visualization practitioners couple the simulation with production visualization tools.
-% Damaris/Viz~\cite{DorierSPAS13}.  
-Because visualization algorithms are usually I/O intensive, various I/O solutions are proposed for in situ processing, such as ADIOS~\cite{LofsteadZKS09}, FlexIO~\cite{ZhengZESWDNCAKPY13}, and DataSpaces~\cite{DocanPK12}.  Instead of using existing frameworks and I/O solutions, the characteristics of both our simulation and analysis algorithms required us to customize our in situ workflow and store the output data in high-performance databases.}
+{\bf In situ visualization infrastructures}\qquad couple the simulations and visualization pipelines.  Production coupling tools include VisIt Libsim~\cite{WhitlockFM11} and ParaView Catalyst~\cite{FabianMTBMGRJ11}.  
+Various I/O and staging tools are developed for in situ visualization, such as ADIOS~\cite{LofsteadZKS09}, Damaris/Viz~\cite{DorierSPAS13}, FlexIO~\cite{ZhengZESWDNCAKPY13}, and DataSpaces~\cite{DocanPK12}.  
+In addition tool coupling tools, algorithms are proposed to optimize in situ workflows.  For example, GoldRush~\cite{ZhengYHWESAK13} was proposed to use idle in the simulation for in situ processing.  
 
-Various scientific applications including combustion~\cite{YuWGCM10}, climate~\cite{WoodringPSPAH16} to superconductivities~\cite{GuoPG17}, benefit from in situ visualization techniques.  
-\remark{For example, Yu et al.~\cite{YuWGCM10} visualized volume and particle data in combustion simulations.  Topologies in combustion data can be extracted by using segmented merge trees in situ~\cite{LandgePGBKCB14}.  Woodring et al.~\cite{WoodringPSPAH16} developed an in situ workflow to analyze eddies in the study of ocean-climate models.  Fabian~\cite{Fabian12} used in situ processing to detect fragments in explosion simulations.  All these studies aim to achieve higher temporal resolution of the data in order to extract time-critical features.} 
+
+% Offloading the in situ algorithms into secondary resources, so called in transit visualization, is also a 
+% In our study, we decouple the heavyweight vortex analysis in an independent process for parallel and asynchronous processing, in order to reduce the slowdown of the simulation.}
+
+% Instead of using existing frameworks and I/O solutions, the characteristics of both our simulation and analysis algorithms required us to customize our in situ workflow and store the output data in high-performance databases.}
+
+{\bf In situ visualization applications} range from combustion~\cite{YuWGCM10, BennettABGGJKKPPPTYZC12}, climate~\cite{WoodringPSPAH16}, to superconductivities~\cite{GuoPG17}.  All these studies aim to achieve higher temporal resolution of the data in order to extract time-critical features.
+In combustion sciences, Bennett et al.~\cite{BennettABGGJKKPPPTYZC12} compute merge trees in combustion simulations by offloading the analyses into secondary resources.  
+In ocean-climate models, an in situ work flow was developed to extract and track eddies in MPAS-O simulations~\cite{WoodringPSPAH16}.  
+Likewise, Fabian~\cite{Fabian12} detect fragments in explosion simulations in situ.  
+Guo et al.~\cite{GuoPG17} proposed an in situ work workflow to track magnetic flux vortices in superconductivity simulations.  
+
+
+% Woodring et al. developed an in situ workflow to analyze eddies in the study of ocean-climate models.  
+% Topologies in combustion data can be extracted by using segmented merge trees in situ~\cite{LandgePGBKCB14}.  
+% Yu et al.~\cite{YuWGCM10} visualized volume and particle data in combustion simulations.  
 
 
 
