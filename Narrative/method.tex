@@ -15,7 +15,7 @@ From the fusion simulations, , we first precondition the data with the robust pr
 \end{figure}
 
 
-\subsection{Data Preconditioning}
+\subsection{Data preconditioning}
 
 We use the RPCA to precondition the time series data, in order to distinguish the moving and stationary patterns as ``foregrounds'' and ``backgrounds.''  Formally, the input data matrix $M$ can be decomposed as 
 
@@ -26,7 +26,7 @@ M = L_0 + S_0,
 \noindent where $L_0$ has low rank and $S_0$ is a sparse perturbation matrix.  RPCA has been used to identify activities in video surveillance data, so that $L_0$ and $S_0$ correspond to the stationary background and moving features, respectively.  By preconditioning the input time series, we can detect the moving features for further blob tracking.  We are working with George Ostrouchov and Jong Choi from ORNL to generalize this technique to precondition the triangular mesh data.  
 
 
-\subsection{Topology-based blob detection}
+\subsection{Blob extraction}
 
 %\begin{figure}[!h]
 %  \centering
@@ -51,7 +51,7 @@ Persistent diagram~\cite{EdelsbrunnerLZ02}.
 
 
 
-\subsection{Topology-based blob tracking}
+\subsection{Blob tracking}
 
 
 
