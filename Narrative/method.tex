@@ -2,7 +2,7 @@
 \label{sec:method}
 
 The workflow of our method is illustrated in Figure~\ref{fig:pipeline}.  
-From the fusion simulations, , we first precondition the data with the robust principal component analysis (RPCA)~\cite{CandesLMW11}, and then use the topology analyses to extract blobs as connected components of critical points (local minima/maxima).  The blobs are further tracked over different timesteps.  The dynamics of the blobs, such as birth/death/merge/split events are further visualized for fusion scientists to analyze the data.  
+From the fusion simulations, we first precondition the data with the robust principal component analysis (RPCA)~\cite{CandesLMW11}, and then use the topology analyses to extract blobs as connected components of critical points (local minima/maxima).  The blobs are further tracked over different timesteps.  The dynamics of the blobs, such as birth/death/merge/split events are further visualized for fusion scientists to analyze the data.  
 
 
 % We first load the output scalar electrostatic potential field from ADIOS I/O, 
@@ -72,6 +72,11 @@ We are going to develop new visualizations for fusion scientists to understand t
   \caption{Proposed storyline visualization of blob merge/split events (image courtesy Guo et al.~\cite{GuoPPKG16})}
   \label{fig:storyline}
 \end{figure}
+
+The design of the event visualization, which is inspired by storyline visualization~\cite{TanahashiM12} is illustrated in Figure~\ref{fig:storyline}.  The event visualization gives an overview of blob dynamics over time.  In this view, each colored ribbon represents one blob.  The duration of the blob is encoded by the length of the ribbon.  Blobs are connected to each other with short gray lines if the blobs are involved in an merge/split event.  User interactions including zooming and panning are provided for users to dig into details in the long time sequence.  
+
+In the existing design, the graph layout implementation is based on the \texttt{dot} algorithm provided by the Graphviz package~\cite{GansnerN00}.  We minimize the number of crossings in the graph layout in order to reduce visual clutters and to increase the readability.  An automatic color scheme is also generated to avoid visual ambiguities based the two constrains: (1) blobs that appear in the same time spans must have different colors; (2) blobs involved in the same merge/split event must have different colors.  The generated graph layout will be visualized in a web-based user interface for interactive exploration. 
+
 
 % 
 
