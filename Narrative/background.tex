@@ -4,6 +4,22 @@
 In this section, we review literature related to topology-based visualization, feature tracking, and in situ visualization.  
 
 
+\subsection{In situ visualization}
+
+A comprehensive review on in situ visualization is available in~\cite{BauerAACGKMLVWB16}.  In situ visualization is mainly driven by three reasons.  First, there is a disparity between scientific simulations and limited I/O bandwidth, which prevents comprehensive data storage.  Second, domain scientists need to understand simulation outputs in higher temporal resolutions than before.  Our in situ topology-based visualization workflow benefits the analysis of blobs in both aspects.  In the following, we categorize the related work into algorithms, infrastructures, and applications.  
+
+\remark{Various algorithms are used for efficient in situ visualization.  Explorable images~\cite{TikhonovaCM2010}, which can generate new volume rendering results with a small number of rendered images, can be used for in situ visualization.  Similarly, pathtubes can be visualized in situ with explorable images~\cite{YeMM13}.  Ahrens et al. presented an image-based in situ visualization framework for interactive exploration~\cite{AhrensJOPRP14}.  In addition to rendering technologies, algorithms are proposed to select optimal numbers of time steps for in situ visualization~\cite{MalakarVMKHLP15}.  GoldRush~\cite{ZhengYHWESAK13} uses idle resources for in situ processing.  
+Bennett et al.~\cite{BennettABGGJKKPPPTYZC12} explored a method to offload the computations of merge trees into secondary resources.  In our study, we decouple the heavyweight vortex analysis in an independent process for parallel and asynchronous processing, in order to reduce the slowdown of the simulation.}
+
+\remark{In situ infrastructures are bridges between the simulation code and visualization methods.  Typical examples include ParaView Catalyst~\cite{FabianMTBMGRJ11} and VisIt Libsim~\cite{WhitlockFM11}, which can help scientists and visualization practitioners couple the simulation with production visualization tools.
+% Damaris/Viz~\cite{DorierSPAS13}.  
+Because visualization algorithms are usually I/O intensive, various I/O solutions are proposed for in situ processing, such as ADIOS~\cite{LofsteadZKS09}, FlexIO~\cite{ZhengZESWDNCAKPY13}, and DataSpaces~\cite{DocanPK12}.  Instead of using existing frameworks and I/O solutions, the characteristics of both our simulation and analysis algorithms required us to customize our in situ workflow and store the output data in high-performance databases.}
+
+Various scientific applications including combustion~\cite{YuWGCM10}, climate~\cite{WoodringPSPAH16} to superconductivities~\cite{GuoPG17}, benefit from in situ visualization techniques.  
+\remark{For example, Yu et al.~\cite{YuWGCM10} visualized volume and particle data in combustion simulations.  Topologies in combustion data can be extracted by using segmented merge trees in situ~\cite{LandgePGBKCB14}.  Woodring et al.~\cite{WoodringPSPAH16} developed an in situ workflow to analyze eddies in the study of ocean-climate models.  Fabian~\cite{Fabian12} used in situ processing to detect fragments in explosion simulations.  All these studies aim to achieve higher temporal resolution of the data in order to extract time-critical features.} 
+
+
+
 \subsection{Topology-based Visualization}
 
 A comprehensive review on topology-based visualization, which covers scalar, vector, and tensor fields topology is available in~\cite{HeineLHIFSHG16}.  We mainly review techniques related to the level-set based scalar field visualization.  
@@ -28,9 +44,15 @@ Feature tracking is a well-studied problem in scientific visualization~\cite{Pos
 
 Feature tracking techniques highly depend on how feature are defined.  In most applications, features are defined as subregions (e.g. subvolumes) of the data; region overlaps are used as priori for tracking.  In flow visualization, Vortex core lines, which have multiple different definitions, can be extracted and tracked with parallel vectors~\cite{PeikertR99} and feature flow fields~\cite{TheiselS03, WeinkaufTGP11}, respectively.  Critical point tracking in vector fields and tensor fields are also studied~\cite{GarthTS04, TricocheSH01, TricocheWSH02, ReininghausKWH12}.  In superconductivity simulations, magnetic flux vortices---topological singularities in the input complex-valued order parameter field---can be tracked by generalizing the mathematical definition to 4D space and time~\cite{GuoPPKG16, GuoPG17, PhillipsGPKG16, PhillipsPKG15}.  
 
-Blob tracking has been studied for both experimental and simulation data in fusion sciences.  \remark{TBA}.  Existing blob tracking in fusion plasma~\cite{WuWSCCSCK16}.  Experimental data~\cite{DavisKMRSZ14}.  
-
 In addition to feature tracking algorithms, the visualization of topological changes of features is also a challenging problem.  The changing dynamics of features can be visualized with story lines~\cite{TanahashiM12} in previous studies~\cite{GuoPPKG16}, and we are going to invent new techniques to visualize the dynamics in fusion simulation data.  
+
+
+\subsection{Blob tracking in fusion sciences}
+
+Blob tracking has been studied for both experimental and simulation data in fusion sciences.  In experimental datasets, Davis et al.~\cite{DavisKMRSZ14} first locate each local maximum that is greater than a predefined threshold, and then use an ellipse to fit to the contour at the half maximum level; ellipse smaller than a predefined size is then identified as a blob.  The same technique was used in Zweben et al.~\cite{Zweben15} and Churchill et al.~\cite{Churchill17}.  In simulation datasets, Wu et al.~\cite{WuWSCCSCK16} define blobs as local regions that have significant higher temperatures and densities than the surroundings.  A two phase algorithm was proposed to first select candidate points and then extract blobs as the connected components of the candidates.  
+
+In this study, we are going to use scalar field topology theories instead of existing empirical methods to define, extract, and track blobs in the electrostatic turbulence data.  Compared with previous efforts, our method is data-driven and is based on well-established computational topology theories.  The topology-based blob definition is not only compatible with existing connected component based analyses, but also is capable of capturing more comprehensive topological information from the input data than previously possible.  
+
 
 % Robustness~\cite{SkrabaW14}.  
 % Tracking vector field critical points~\cite{}.  Vortex core tracking~\cite{TheiselSWHS05}.  Vortex core tracking in scale space~\cite{BauerP02}.  
@@ -39,24 +61,3 @@ In addition to feature tracking algorithms, the visualization of topological cha
 % Critical point tracking~\cite{}.
 
 
-
-\subsection{In Situ Visualization}
-
-A comprehensive review on in situ visualization is available in~\cite{BauerAACGKMLVWB16}.  In situ visualization is mainly driven by three reasons.  First, there is a disparity between scientific simulations and limited I/O bandwidth, which prevents comprehensive data storage.  Second, domain scientists need to understand simulation outputs in higher temporal resolutions than before.  Our in situ topology-based visualization workflow benefits the analysis of blobs in both aspects.  In the following, we categorize the related work into algorithms, infrastructures, and applications.  
-
-\remark{Various algorithms are used for efficient in situ visualization.  Explorable images~\cite{TikhonovaCM2010}, which can generate new volume rendering results with a small number of rendered images, can be used for in situ visualization.  Similarly, pathtubes can be visualized in situ with explorable images~\cite{YeMM13}.  Ahrens et al. presented an image-based in situ visualization framework for interactive exploration~\cite{AhrensJOPRP14}.  In addition to rendering technologies, algorithms are proposed to select optimal numbers of time steps for in situ visualization~\cite{MalakarVMKHLP15}.  GoldRush~\cite{ZhengYHWESAK13} uses idle resources for in situ processing.  
-Bennett et al.~\cite{BennettABGGJKKPPPTYZC12} explored a method to offload the computations of merge trees into secondary resources.  In our study, we decouple the heavyweight vortex analysis in an independent process for parallel and asynchronous processing, in order to reduce the slowdown of the simulation.}
-
-\remark{In situ infrastructures are bridges between the simulation code and visualization methods.  Typical examples include ParaView Catalyst~\cite{FabianMTBMGRJ11} and VisIt Libsim~\cite{WhitlockFM11}, which can help scientists and visualization practitioners couple the simulation with production visualization tools.
-% Damaris/Viz~\cite{DorierSPAS13}.  
-Because visualization algorithms are usually I/O intensive, various I/O solutions are proposed for in situ processing, such as ADIOS~\cite{LofsteadZKS09}, FlexIO~\cite{ZhengZESWDNCAKPY13}, and DataSpaces~\cite{DocanPK12}.  Instead of using existing frameworks and I/O solutions, the characteristics of both our simulation and analysis algorithms required us to customize our in situ workflow and store the output data in high-performance databases.}
-
-Various scientific applications including combustion~\cite{YuWGCM10}, climate~\cite{WoodringPSPAH16} to superconductivities~\cite{GuoPG17}, benefit from in situ visualization techniques.  
-\remark{For example, Yu et al.~\cite{YuWGCM10} visualized volume and particle data in combustion simulations.  Topologies in combustion data can be extracted by using segmented merge trees in situ~\cite{LandgePGBKCB14}.  Woodring et al.~\cite{WoodringPSPAH16} developed an in situ workflow to analyze eddies in the study of ocean-climate models.  Fabian~\cite{Fabian12} used in situ processing to detect fragments in explosion simulations.  All these studies aim to achieve higher temporal resolution of the data in order to extract time-critical features.} 
-% In our application, an additional challenge is that the TDGL simulation runs much faster than the vortex analysis algorithms.  We must redesign the workflow and accelerate the algorithms in our in situ processing.}
-
-
-% use direct integration for in situ primitive detection and implement the custom in transit workflow.  
-% GLEAN~\cite{VishwanathHMP11}.  .  PreDatA~\cite{ZhengADLLKPPSW10}.  .  SCIRun~\cite{ParkerJ95}.  Workflows, decaf, etc.  \remark{TBA: explainations}.
-
-% \remark{Recently, a group of visualization researchers started the ``in situ terminology project''~\cite{terminology}, in order to uniformly classify the description of in situ methods.  According to their terminology, the integration type and data access are direct, because the primitive detection code is directly plugged into the TDGL simulations and shares the same address space.  The proximity is twofold: the primitive detector shares the same GPU cores as the simulation, and the vortex analyzer uses CPUs on or off the node.  The synchronization is hybrid: the primitive detector runs synchronously with the simulation, and the vortex analyzer runs asynchronously with the simulation.  The operation controls are not applicable in our workflow, and the output type is explorable.}

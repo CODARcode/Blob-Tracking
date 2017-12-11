@@ -6,3 +6,5 @@
 *.pdf
 *.toc
 *.bak
+.DS_Store
+Related/
