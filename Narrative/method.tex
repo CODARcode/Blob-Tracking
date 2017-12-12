@@ -7,7 +7,7 @@ From the fusion simulations, we first precondition the data with the robust prin
 
 % We first load the output scalar electrostatic potential field from ADIOS I/O, 
 
-\begin{figure}[!h]
+\begin{figure}
   \centering
   \includegraphics[width=\linewidth]{Figs/pipeline}
   \caption{The pipeline of our method.}
@@ -35,7 +35,7 @@ M = L_0 + S_0,
 %  \label{fig:blob}
 %\end{figure}
 
-\begin{figure}[!h]
+\begin{figure}
   \centering
   \includegraphics[width=\linewidth]{Figs/simplification2D}
   \caption{Topology simplification of a 2D slice with three different persistence thresholds: (a) and (d) 0, (b) and (e) 20, (c) and (f) 40.  The simplified scalar field are visualized in (a), (b), and (c), and the corresponding segmentation results are shown in (d), (e), and (f).}
@@ -70,7 +70,7 @@ In both cases, the tracking graph will be obtained and then we can further defin
 
 \subsection{Event visualization}
 
-\begin{figure}[!h]
+\begin{figure}
   \centering
   \includegraphics[width=\linewidth]{Figs/events}
   \caption{Proposed event visualization of blobs (image courtesy Scott Klasky, ORNL)}
@@ -79,7 +79,7 @@ In both cases, the tracking graph will be obtained and then we can further defin
 
 We are going to develop new visualizations for fusion scientists to understand the dynamics of the blobs.  We will define several different types of events, including birth, death, merge, and split to characterize the behaviors of blobs.  In our previous study of magnetic flux vortex tracking~\cite{GuoPPKG16, GuoPG17, PhillipsGPKG16, PhillipsPKG15}, we have already developed a graph-based representation of such events.  We are going to further generalize the previous methods to visualize the events in the XGC data.  
 
-\begin{figure}[!h]
+\begin{figure}
   \centering
   \includegraphics[width=\linewidth]{Figs/storyline}
   \caption{Proposed storyline visualization of blob merge/split events (image courtesy Guo et al.~\cite{GuoPPKG16})}

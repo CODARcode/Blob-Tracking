@@ -1,9 +1,10 @@
 \section{Preliminary resutls}
+\label{sec:results}
 
-\begin{figure}[!h]
+\begin{figure}
   \centering
   \includegraphics[width=\linewidth]{Figs/simplification3D}
-  \caption{Topology simplification of a 3D XGC simulation dataset.}
+  \caption{3D Visualization of a XGC simulation dataset: (a) the spatial view, (b) the persistence curve, (c) the persistence diagram.}
   \label{fig:results}
 \end{figure}
 
@@ -15,9 +16,19 @@
 %  \label{fig:results}
 %\end{figure}
 
-Figure~\ref{fig:results} presents our preliminary results.  We are already able to extract critical points in individual slices.  We will associate these points across different slices and timesteps for the next milestones.  We are also going to incorporate the RPCA into the workflow to simplify the input data.  We would also like to have discussions with fusion scientists to evaluate our approach.  
+The visualization results shown in Figure~\ref{fig:results} have three views, including the spatial view, the persistence curve, and the the persistence diagram.  
 
-Persistent diagram~\cite{EdelsbrunnerLZ02}.  
-\remark{A persistence diagram is a scatter plot where each critical point pair is drawn as a point using the begin and end time as x, y coordinates. A pair's persistence is thus indicated by the vertical distance to the main diagonal.}
+{\bf The spatial view} visualizes the spatial distribution of critical points and segmentations.  This figure highlights one of the blobs that are extracted.  
 
-Contour tree instead of Reeb graphs.  
+{\bf The persistence curve} provides a visual hint for choosing persistence threshold topology simplification.  In this plot, the $x$-axis is the persistence threshold and the $y$-axis is the number of arcs or segmentations in the results.  Users can interactively choose proper number of segmentations and thus define thresholds for different topology simplification results.  
+
+{\bf The persistence diagram}~\cite{EdelsbrunnerLZ02} visualizes the critical point pair of each arc, and the diagram also serves as a visual hint for choosing proper persistence threshold.  The lower ($x$-axis) and upper ($y$-axis) values of each arc is plotted as a stem in the diagram.  The longer is the stem, the more persistent is an arc.  Users can further investigate the simplification results by choose different persistent thresholds.  
+
+% The persistence plot is a 
+% \remark{A persistence diagram is a scatter plot where each critical point pair is drawn as a point using the begin and end time as x, y coordinates. A pair's persistence is thus indicated by the vertical distance to the main diagonal.}
+
+% We are already able to extract critical points in individual slices.  We will associate these points across different slices and timesteps for the next milestones.  We are also going to incorporate the RPCA into the workflow to simplify the input data.  We would also like to have discussions with fusion scientists to evaluate our approach.  
+
+% Persistent diagram 
+
+% Contour tree instead of Reeb graphs.  
