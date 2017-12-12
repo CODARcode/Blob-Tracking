@@ -38,21 +38,28 @@ M = L_0 + S_0,
 \begin{figure}[!h]
   \centering
   \includegraphics[width=\linewidth]{Figs/simplification2D}
-  \caption{Topology simplification of a 2D slice with three different persistence thresholds: (a) 0, (b) 20, (c) 40.}
+  \caption{Topology simplification of a 2D slice with three different persistence thresholds: (a) and (d) 0, (b) and (e) 20, (c) and (f) 40.  The simplified scalar field are visualized in (a), (b), and (c), and the corresponding segmentation results are shown in (d), (e), and (f).}
+  \label{fig:simplification2D}
 \end{figure}
 
 
-As illustrated in Figure~\ref{fig:blob}(a), in our study, blob detection is defined as the extraction of critical points (local minima and maxima) in 2D slices; blob tracking is defined as associating blobs across different planes and different timesteps.  The critical point tracking is based on the combinatorial feature flow fields method~\cite{ReininghausKWH12}, which is a generalization of a feature flow field~\cite{TheiselS03} in the combinatorial sense.  We are also going to use merge tree theories to simplify the blob detection and tracking results~\cite{OesterlingHWMS17}.  3D visualizations will be provided to explore the spatiotemporal distributions of the tracked blobs.  
+In this study, blobs are defined as topological segmentations of Reeb graphs.  Based on the concepts reviewed in Section~\ref{sec:topology}, in order to extract comprehensive topological information, we need Reeb graphs instead of contour trees, because the torus-shaped 3D domain is non-simply connected.  However, in our current prototype implementation, we are still using contour trees for proof of concept.  We will replace contour trees with Reeb graphs in the next milestones of this project.  Unless otherwise noted, the following discussions are based on contour trees instead of Reeb graphs.  
 
-Topology simplifications.  
+The contour tree construction is a multistage process~\cite{CarrSA00}.  First, we sort all vertices in an array based on the scalar values monotonously from the global minimum to the global maximum.  Second, we sweep the array downwards and upwards to construct the \emph{join tree} and the \emph{split tree}, respectively.  Details of the join/split constructions are documented in~\cite{CarrSA00}.  Third, we merge the join tree and split tree to form the contour tree.  The topological segmentation is then achieved by associating the vertices to the arcs of the contour tree.  
 
-Persistent diagram~\cite{EdelsbrunnerLZ02}.  
-\remark{A persistence diagram is a scatter plot where each critical point pair is drawn as a point using the begin and end time as x, y coordinates. A pair's persistence is thus indicated by the vertical distance to the main diagonal.}
+The contour tree must be simplified to identify meaningful blobs in practice, because the fluctuation of the turbulence will generate many meaningless local maxima/minima, as shown in Figure~\ref{fig:simplification2D}.  We currently use persistence~\cite{EdelsbrunnerLZ02} as the criteria to merge arcs and thus to simplify contour tree.  As reviewed in Section~\ref{sec:topology}, persistence is defined as the difference between saddle and min/max values of an arc.  By pruning arcs with least persistence values, we can obtain a smaller set of blobs for further exploration.  
 
+In our current implementation, we follow Pascucci et al.~\cite{Pascucci2004} to use branch decomposition---an alternative representation of contour trees---to simplify contour trees.  First, we transform the input contour tree to a branch decomposition tree.  Second, we prune branches in the branch decomposition tree by a given persistence threshold.  Third, we transform the pruned branch decomposition tree back to the simplified contour tree.  
+
+Figure~\ref{fig:simplification2D} visualizes topological segmentation results of a single slice dataset with different persistence thresholds.  The results without simplifications (threshold equals to zero) are shown in the first column; all local minima/maxima are kept.  The second and third column are the results with the persistence threshold 20 and 40, respectively.  We can see that the simplification keeps most salient blob features in the data.  
+
+
+% As illustrated in Figure~\ref{fig:blob}(a), in our study, blob detection is defined as the extraction of critical points (local minima and maxima) in 2D slices; blob tracking is defined as associating blobs across different planes and different timesteps.  The critical point tracking is based on the combinatorial feature flow fields method~\cite{ReininghausKWH12}, which is a generalization of a feature flow field~\cite{TheiselS03} in the combinatorial sense.  We are also going to use merge tree theories to simplify the blob detection and tracking results~\cite{OesterlingHWMS17}.  3D visualizations will be provided to explore the spatiotemporal distributions of the tracked blobs.  
 
 
 \subsection{Blob tracking}
 
+We are going to develop algorithms to track the evolution of blobs over time.  
 
 
 \subsection{Event visualization}
