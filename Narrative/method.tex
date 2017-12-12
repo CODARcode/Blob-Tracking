@@ -59,7 +59,13 @@ Figure~\ref{fig:simplification2D} visualizes topological segmentation results of
 
 \subsection{Blob tracking}
 
-We are going to develop algorithms to track the evolution of blobs over time.  
+We are going to explore two distinct approaches to track the evolution of blobs over time, including region overlap and time-varying topologies.  The output of either approach is a \emph{tracking graph}.  The nodes in the tracking graph are individual blobs in all timesteps.  Two nodes in the adjacent timesteps are linked, if they are associated temporally.  
+
+In the region overlap approach~\cite{SilverW98}, two blobs in the adjacent timesteps are associated if they have significant spatial overlaps.  The saliency can be defined by the percentage of overlaps or other geometric measurements.  
+
+In the time-varying topology approach~\cite{SohnB06}, we will need to extract Reeb graphs or contour trees in both space and time.  In this case, each blob will be a spatiotemporal object and thus blob tracking is automatically achieved.  
+
+In both cases, the tracking graph will be obtained and then we can further define events for analysis and visual exploration.  The event visualization is discussed in the following section.  
 
 
 \subsection{Event visualization}
